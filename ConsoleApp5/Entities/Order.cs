@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Course.Entities.Enums;
 using Course.Entities;
 using System.Numerics;
+using System.Globalization;
+using System.Text;
 
 namespace ConsoleApp5.Entities
 {
@@ -38,9 +40,23 @@ namespace ConsoleApp5.Entities
             double sum = 0;
             foreach (OrderItem item in Items)
             {
-                sum += item.SubTotal();                
+                sum += item.SubTotal();
             }
             return sum;
+        }
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Order moment: " + Moment.ToString("dd/MM/yyyy HH:mm:ss"));
+            sb.AppendLine("Order status: " + Status);
+            sb.AppendLine("Client: " + Client);
+            sb.AppendLine("Order items:");
+            foreach (OrderItem item in Items)
+            {
+                sb.AppendLine(item.ToString());
+            }
+            sb.AppendLine("Total price: $" + Total().ToString("F2", CultureInfo.InvariantCulture));
+            return sb.ToString();
         }
     }
 }
