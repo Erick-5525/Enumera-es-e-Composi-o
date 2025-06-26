@@ -6,6 +6,7 @@ using System.Numerics;
 using System.Globalization;
 using System.Text;
 
+
 namespace ConsoleApp5.Entities
 {
     internal class Order
